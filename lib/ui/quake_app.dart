@@ -17,8 +17,8 @@ class QuakesApp extends StatefulWidget {
 class _QuakesAppState extends State<QuakesApp> {
   double _zoomValue = 5.0;
   final List<Marker> _markerList = [];
-   static const LatLng _centrer = LatLng(45.5426283, -122.7944832);
-   late final Completer<GoogleMapController> _controller = Completer();
+  static const LatLng _centrer = LatLng(45.5426283, -122.7944832);
+  late final Completer<GoogleMapController> _controller = Completer();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppCubit, CubitState>(
@@ -65,6 +65,7 @@ class _QuakesAppState extends State<QuakesApp> {
       ),
     );
   }
+
   Widget zoomPLus() {
     return Align(
       alignment: Alignment.topLeft,
@@ -127,7 +128,8 @@ class _QuakesAppState extends State<QuakesApp> {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(
       CameraUpdate.newCameraPosition(
-        CameraPosition(target: const LatLng(40.712776, -74.005974), zoom: zoomvalue),
+        CameraPosition(
+            target: const LatLng(40.712776, -74.005974), zoom: zoomvalue),
       ),
     );
   }
