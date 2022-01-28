@@ -16,16 +16,15 @@ class QuakesApp extends StatefulWidget {
 
 class _QuakesAppState extends State<QuakesApp> {
   double _zoomValue = 5.0;
-  List<Marker> _markerList = [];
-  static LatLng _centrer = LatLng(45.5426283, -122.7944832);
-  late Completer<GoogleMapController> _controller = Completer();
+  final List<Marker> _markerList = [];
+   static const LatLng _centrer = LatLng(45.5426283, -122.7944832);
+   late final Completer<GoogleMapController> _controller = Completer();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppCubit, CubitState>(
       builder: (context, state) {
         if (state is LoadedState) {
           var data = state.httpData;
-          print(data.features![0].properties!.place);
           return SafeArea(
             child: Scaffold(
               body: Stack(
@@ -43,7 +42,7 @@ class _QuakesAppState extends State<QuakesApp> {
                 onPressed: () {
                   findQuake(data);
                 },
-                child: Text('Find Quake'),
+                child: const Text('Find Quake'),
               ),
             ),
           );
@@ -58,7 +57,7 @@ class _QuakesAppState extends State<QuakesApp> {
     return Align(
       alignment: Alignment.topLeft,
       child: IconButton(
-        icon: Icon(Icons.remove_circle),
+        icon: const Icon(Icons.remove_circle),
         onPressed: () {
           _zoomValue--;
           _minus(_zoomValue);
@@ -70,7 +69,7 @@ class _QuakesAppState extends State<QuakesApp> {
     return Align(
       alignment: Alignment.topLeft,
       child: IconButton(
-        icon: Icon(Icons.add_circle),
+        icon: const Icon(Icons.add_circle),
         onPressed: () {
           _zoomValue++;
           _minus(_zoomValue);
@@ -80,11 +79,11 @@ class _QuakesAppState extends State<QuakesApp> {
   }
 
   Widget _buildGoogleMap(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: GoogleMap(
-        initialCameraPosition: CameraPosition(target: _centrer),
+        initialCameraPosition: const CameraPosition(target: _centrer),
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
@@ -128,7 +127,7 @@ class _QuakesAppState extends State<QuakesApp> {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(
       CameraUpdate.newCameraPosition(
-        CameraPosition(target: LatLng(40.712776, -74.005974), zoom: zoomvalue),
+        CameraPosition(target: const LatLng(40.712776, -74.005974), zoom: zoomvalue),
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:earthquake_app/cubit/app_cutibt_state.dart';
-import 'package:earthquake_app/util/quake_app.dart';
+import 'package:earthquake_app/ui/quake_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
